@@ -28,5 +28,5 @@ publisher={Springer}
 ### Multi-fidelity deep GP Embedded Mapping 
 This model implements the multi-fidelity Embedded mapping proposed in [**Multi-fidelity modeling with different input domain definitions using deep Gaussian processes.** by A. Hebbal *et al*](https://arxiv.org/pdf/2006.15924.pdf)
 
-### Multi-objective
+### Multi-objective deep GP
 This model implements the multi-objective DGP model proposed in [**Deep Gaussian process for multi-objective Bayesian optimization.** by A. Hebbal *et al*] (https://link.springer.com/article/10.1007/s11081-022-09753-0)
