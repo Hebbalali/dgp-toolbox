@@ -2,29 +2,31 @@
 
 This repository accompanies the doctoral thesis [**"Deep gaussian process package for the analysis and optimization of complex systems"**](https://hal.science/tel-03276426/document).
 
-The code is based on GPflow 2.0 and the [Doubly-Stochastic-DGP](https://github.com/UCL-SML/Doubly-Stochastic-DGP) implementation of DGP proposed by Salimbeni *et al*.
+The code is based on GPflow 2.0 and the [Doubly-Stochastic-DGP by Salimbeni *et al*](https://github.com/UCL-SML/Doubly-Stochastic-DGP) implementation of DGP proposed. For multi-fidelity DGP, the base model is based on [multi-fidelity-DGP by Cutajar *et al*](https://github.com/EmuKit/emukit/tree/main/emukit/examples/multi_fidelity_dgp)
 
 ## Bayesian Optimization
 A Bayesian optimization (BO) class is implemented for coupling DGPs and BO.
 SO_BO is a Module class for single objective Unconstrained/constrained Bayesian Optimization using Gaussian processes and deep Gaussian processes. 
-The following optimization problem is considered:
 
-Min     f(x)
-s.t.    x $\in$ [0,1]^d
-        g(x) $\leq$ 0
+## Models
+### DGP Model
+This model implements the base DGP model. 
+This implementation is heavily based on the doubly stochastic implementation DGP implementation of Hugh Salimbeni: 
+    @inproceedings{salimbeni2018natural, title={Natural Gradients in Practice: Non-Conjugate Variational Inference in Gaussian Process Models}, 
+                   author={Salimbeni, Hugh and Eleftheriadis, Stefanos and Hensman, James}, booktitle={Artificial Intelligence and Statistics}, 
+                   year={2018} }
+                  
+The training of the DGP takes into account the differential geometry of the parameter space using natural gradient
+@article{hebbal2020bayesian,
+title={Bayesian optimization using deep Gaussian processes with applications to aerospace system design},
+author={Hebbal, Ali and Brevault, Loic and Balesdent, Mathieu and Talbi, El-Ghazali and Melab, Nouredine},
+journal={Optimization and Engineering},
+pages={1--41},
+year={2020},
+publisher={Springer}
+}
+### Multi-fidelity deep GP Embedded Mapping 
+This model implements the multi-fidelity Embedded mapping proposed in [**Multi-fidelity modeling with different input domain definitions using deep Gaussian processes.** by A. Hebbal *et al*](https://arxiv.org/pdf/2006.15924.pdf)
 
-:param problem: The problem to minimize.
-:param X: The input data [n,d] (It is considered between 0 and 1). 
-:param Y: The objective function evaluation [n,d].
-:param Y: The constrain functions evaluations [n,n_c].
-:param DoE_size: The size of initial data (corresponding to n). If X,Y are given, DoE_size is not taken into account.
-:Dic model_Y_dic: A dictionary which defines the architecture of the objective function model. It has the following form:
-{'layers':l, 'num_units':[q_1,q_2,\ldots,q_l],kernels:['rbf','matern32','matern52',...],num_samples:S}    
-    l=0 comes back to a regular GP.
-    if num_units is an integer, the same number of units will be applied to the different layers.
-    if kernels is a string, the same kernel will be applied to the different layers. (only the 'rbf','matern32', and 'matern52' are implemented) 
-:Dic model_C_dic: A list of n_c dictionaries defining the architecture of the constraint functions. It has the following form:
-{'layers':l, 'num_units':[q_1,q_2,\ldots,q_l],kernels:['rbf','matern32','matern52',...],num_samples:S}   
-    if only one dictionary instead of a list is given, the same model archtiecture will be applied to the different constraint models.  
-Three outputs are obtained Fs, Fmeans, Fvars
-:normalize_input=True: A boolean parameter. If true X,Y,C are normalized and standarized.
+### Multi-objective
+This model implements the multi-objective DGP model proposed in [**Deep Gaussian process for multi-objective Bayesian optimization.** by A. Hebbal *et al*] (https://link.springer.com/article/10.1007/s11081-022-09753-0)
