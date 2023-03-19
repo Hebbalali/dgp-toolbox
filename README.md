@@ -26,7 +26,15 @@ year={2020},
 publisher={Springer}
 }
 ### Multi-fidelity deep GP Embedded Mapping 
-This model implements the multi-fidelity Embedded mapping proposed in [**Multi-fidelity modeling with different input domain definitions using deep Gaussian processes.** by A. Hebbal *et al*](https://arxiv.org/pdf/2006.15924.pdf)
+This model implements the multi-fidelity Embedded mapping for multi-fidelity with variant input space proposed in [**Multi-fidelity modeling with different input domain definitions using deep Gaussian processes.** by A. Hebbal *et al*](https://arxiv.org/pdf/2006.15924.pdf)
 
 ### Multi-objective deep GP
 This model implements the multi-objective DGP model proposed in [**Deep Gaussian process for multi-objective Bayesian optimization.** by A. Hebbal *et al*] (https://link.springer.com/article/10.1007/s11081-022-09753-0)
+
+## Examples
+To show how to use the implemented code five differents notebooks are accessible in the notebooks folder:
+-  *nb_DGP_regression*: Regression using deep Gaussian processes.
+-  *nb_dgp_BO*: Bayesian optimization using deep Gaussian processes.
+-  *nb_mfdgp_improved*: Improved multi-fidelity deep Gaussian process (optimization of the induced points)
+-  *nb_mfdgpem*: Multi-fidelity deep GP Embedded Mapping for multi-fidelity with variant input space.
+-  *nb_modgp*:  Multi-objective deep Gaussian processes.
